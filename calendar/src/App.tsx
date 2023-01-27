@@ -3,28 +3,28 @@ import Header from './components/header/Header';
 import Calendar from './components/calendar/Calendar';
 import Popup from './components/popup/Popup';
 function App() {
-  const [currentMounth, setCurrentMounth] = useState(0)
-  const handleMounth = (event: string) => {
-    if(event === "increase") {
-      if(currentMounth === 11) {
-        setCurrentMounth(0)
-      }else {
-        setCurrentMounth(currentMounth + 1)
-      }
+  const [openAddPopup, setOpenAddPopup] = useState(false)
+  const [openChangePopup, setOpenChangePopup] = useState(false)
+  const [changePopupData, setChangePopupData] = useState({day: 1, mounth: 1, events: 'work'})
+  const handlePopup = (type: string) => {
+    if(type === "add") {
+      openAddPopup ? setOpenAddPopup(false) : setOpenAddPopup(true)
     }
-   if(event === 'decrease') {
-    if(currentMounth === 0) {
-      setCurrentMounth(11)
-    }else {
-      setCurrentMounth(currentMounth - 1)
+  }
+  const handleChangePopup = (type: string, payload: {day: number, mounth: number, events: string} | null) => {
+    debugger
+    if(type === "change") {
+      openChangePopup ? setOpenChangePopup(false) : setOpenChangePopup(true)
     }
-   }
+    if(payload !== null) {
+      setChangePopupData(payload)
+    }
   }
   return (
     <>
-    <Header handleMounth={handleMounth} currentMounth={currentMounth}/>
-    <Calendar currentMounth={currentMounth}/>
-    <Popup />
+    <Header handlePopup={handlePopup}/>
+    <Calendar handleChangePopup={handleChangePopup} />
+    <Popup openAddPopup={openAddPopup} handlePopup={handlePopup} changePopupData={changePopupData} openChangePopup={openChangePopup} handleChangePopup={handleChangePopup}/>
     </>
   );
 }

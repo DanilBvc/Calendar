@@ -2,12 +2,12 @@ import React from 'react'
 import HeaderButton from './headerButton/HeaderButton'
 import HeaderNavigation from './headerNavigation/HeaderNavigation'
 import "./header.css"
-import { HeaderProps } from '../../types/types'
-function Header({handleMounth, currentMounth}:HeaderProps) {
+import { IPopup } from '../../types/types'
+function Header({handlePopup}: IPopup) {
   return (
     <div className='header__wrapper'>
-        <HeaderButton  />
-        <HeaderNavigation handleMounth={handleMounth} currentMounth={currentMounth}/>
+        <HeaderButton handlePopup={handlePopup}  />
+        <HeaderNavigation />
     </div>
   )
 }

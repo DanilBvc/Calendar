@@ -1,7 +1,8 @@
+import { generateState } from './../../utils/utils';
 import { initialState } from './../initialState';
 import { Mounth } from "../../types/types";
 
-export const getStateReducer = (state: Mounth[][] = initialState, action: {type: string, payload: {mounth: number, day: number, event: string}}) => {
+export const getStateReducer = (state: Mounth[][] = initialState, action: {type: string, payload: {mounth: number, day: number,year: number, event: string, needToBeChanged?: string}}) => {
     switch(action.type){
         case "GET_STATE" : {
             state.forEach((mounth) => {
@@ -24,6 +25,24 @@ export const getStateReducer = (state: Mounth[][] = initialState, action: {type:
                 }
             })
             return state
+        }
+        case "CHANGE_EXIST_EVENT": {
+            state.forEach((mounth) => {
+                if(mounth[0].mounth === action.payload.mounth) {
+                    mounth.forEach((day) => {
+                        if(day.day === action.payload.day) {
+                            let filteredArray = day.event.filter((e) => {
+                                return e !== action.payload.needToBeChanged
+                            })
+                            day.event = [...filteredArray, action.payload.event]
+                        }
+                    })
+                }
+            })
+            return state
+        }
+        case "SET_NEW_DATE": {
+            return generateState(action.payload.year)
         }
         default: return state
     }
