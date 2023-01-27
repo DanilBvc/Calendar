@@ -1,0 +1,6 @@
+.header-slider__wrapper {
+    display: flex;
+}
+.arrow-left, .arrow-right {
+    cursor: pointer;
+}
