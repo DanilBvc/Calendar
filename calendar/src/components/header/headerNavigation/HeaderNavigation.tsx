@@ -1,11 +1,10 @@
 import React from 'react'
 import HeaderSlider from './headerSlider/HeaderSlider'
 import HeaderDatePicker from './headerDatePicker/HeaderDatePicker'
-import { HeaderProps } from '../../../types/types'
-function headerNavigation({handleMounth, currentMounth}: HeaderProps) {
+function headerNavigation() {
   return (
-    <div>
-        <HeaderSlider handleMounth={handleMounth} currentMounth={currentMounth}/>
+    <div className='header-navigation__wrapper'>
+        <HeaderSlider/>
         <HeaderDatePicker />
     </div>
   )

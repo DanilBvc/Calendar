@@ -5,6 +5,7 @@
 .upper-calendar-cell {
     display: flex;
     justify-content: space-between;
+    background-color: aliceblue;
 }
 .calendar-cell {
     border: 1px solid black;

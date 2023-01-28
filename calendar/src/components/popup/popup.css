@@ -1,6 +1,6 @@
 .popup__wrapper {
-    width: 220px;
-    height: 160px;
+    width: 500px;
+    height: 280px;
     border: 1px solid black;
     display: flex;
     flex-direction: column;
@@ -11,14 +11,34 @@
     position: absolute;
 left: 50%;
 top: 50%;
-margin-left: -110px;
-margin-top: -130px;
+margin-left: -250px;
+margin-top: -227px;
 }
 .popup__title {
     display: flex;
     justify-content: space-between;
+    margin: 10px;
+    
 }
 .popup__input, .popup__input-date-left, .popup__input-date-right {
     display: flex;
     flex-direction: column;
+    padding: 10px;
+}
+
+.popup__input-button button{
+    padding: 7px 15px;
+    cursor: pointer;
+}
+.popup__input-button button:disabled {
+    border: none;
+    cursor: auto;
+}
+.background {
+    position: absolute;
+    width: 100%;
+    top: 0;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.489);
+    cursor: pointer;
 }

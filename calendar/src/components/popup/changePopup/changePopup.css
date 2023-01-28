@@ -1,0 +1,12 @@
+.popup__title-close-btn {
+    cursor: pointer;
+}
+.popup__title-close-btn::before { content: "\2716"; }
+.popup__title-text {
+    font-size: 22px;
+}
+.popup__input-button {
+    display: flex;
+    padding: 10px;
+    justify-content: space-between;
+}

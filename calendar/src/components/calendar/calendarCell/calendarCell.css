@@ -1,0 +1,15 @@
+.event-item {
+    cursor: pointer;
+    white-space: pre-wrap;
+    overflow: auto;
+    border: 1px dotted black;
+    width: 32ch;
+    float: left;
+    margin: 0.5em;
+    min-height: 1em;
+    word-break: break-all;
+}
+
+.calendar-cell {
+    min-height: 150px;
+}

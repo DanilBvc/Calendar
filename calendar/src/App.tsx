@@ -1,30 +1,47 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Header from './components/header/Header';
 import Calendar from './components/calendar/Calendar';
 import Popup from './components/popup/Popup';
+import { useDispatch } from 'react-redux';
+import { setNewEventAction } from './store/actions/setNewEventAction';
 function App() {
-  const [currentMounth, setCurrentMounth] = useState(0)
-  const handleMounth = (event: string) => {
-    if(event === "increase") {
-      if(currentMounth === 11) {
-        setCurrentMounth(0)
-      }else {
-        setCurrentMounth(currentMounth + 1)
-      }
+  const [openAddPopup, setOpenAddPopup] = useState(false)
+  const [openChangePopup, setOpenChangePopup] = useState(false)
+  const [changePopupData, setChangePopupData] = useState({day: 1, mounth: 1, events: 'work'})
+  const [loading,  setLoading] = useState(true)
+  const getDataFromLocalStorage = localStorage.getItem("events")
+  const dispatch = useDispatch()
+  const handlePopup = (type: string) => {
+    if(type === "add") {
+      openAddPopup ? setOpenAddPopup(false) : setOpenAddPopup(true)
     }
-   if(event === 'decrease') {
-    if(currentMounth === 0) {
-      setCurrentMounth(11)
-    }else {
-      setCurrentMounth(currentMounth - 1)
-    }
-   }
   }
+  const handleChangePopup = (type: string, payload: {day: number, mounth: number, events: string} | null) => {
+    if(type === "change") {
+      openChangePopup ? setOpenChangePopup(false) : setOpenChangePopup(true)
+    }
+    if(payload !== null) {
+      setChangePopupData(payload)
+    }
+  }
+  useEffect(() => {
+    if(getDataFromLocalStorage !== null) {
+      const eventsArray = JSON.parse(getDataFromLocalStorage)
+      eventsArray.forEach((e: {mounth:number,day:number,event:string,year:number}) => {
+        const mounth = e.mounth
+      const day = e.day
+      const year = e.year
+      const event = e.event
+      dispatch(setNewEventAction({mounth, day, year, event, fromLoacalStorage: true}))
+      });
+    }
+    setLoading(false)
+  }, [])
   return (
     <>
-    <Header handleMounth={handleMounth} currentMounth={currentMounth}/>
-    <Calendar currentMounth={currentMounth}/>
-    <Popup />
+    <Header handlePopup={handlePopup}/>
+    {loading ? <div>Loading please wait</div> : <Calendar handleChangePopup={handleChangePopup} />}
+    <Popup openAddPopup={openAddPopup} handlePopup={handlePopup} changePopupData={changePopupData} openChangePopup={openChangePopup} handleChangePopup={handleChangePopup}/>
     </>
   );
 }

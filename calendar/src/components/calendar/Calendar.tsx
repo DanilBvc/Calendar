@@ -1,17 +1,16 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { getStateAction } from '../../store/actions/getStateAction'
+import {  useSelector } from 'react-redux'
 import CalendarCell from './calendarCell/CalendarCell'
 import "./calendar.css"
-import { CalendarProps, IReducers, Mounth } from '../../types/types'
-function Calendar({ currentMounth }: CalendarProps) {
+import { ICalendar, IReducers, InitialInputState, Mounth } from '../../types/types'
+function Calendar({handleChangePopup} : ICalendar) {
   const state: Mounth[][] = useSelector((state: IReducers) => state.getStateReducer)
-  // const dispatch = useDispatch()
-  // dispatch(getStateAction({mounth: 4}))
+  const sliderDate:InitialInputState = useSelector((state: IReducers) => state.getInputStateReducer)
+  const currentMounth: number = sliderDate.sliderMounth
   return (
     <div className='calendar-wrapper'>
       {state[currentMounth].map((item: any) => (
-        <CalendarCell day={item.day} dayOfTheWeek={item.dayOfTheWeek} events={item.event}/>
+        <CalendarCell mounth={currentMounth} day={item.day} dayOfTheWeek={item.dayOfTheWeek} events={item.event} handleChangePopup={handleChangePopup}/>
       ))}
     </div>
   )
