@@ -1,4 +1,5 @@
 export interface Mounth {
+    year: number,
     mounth: number,
     day: number,
     dayOfTheWeek: string,
@@ -6,7 +7,8 @@ export interface Mounth {
 }
 export interface InitialInputState {
     sliderMounth: number,
-    datePicker: string
+    datePicker: string,
+    year: number
 }
 export interface ICalendarCell {
     day: number,

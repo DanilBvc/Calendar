@@ -13,6 +13,7 @@ export const generateState = (year: number = 2023): Mounth[][] => {
     const array = [];
     for (let j = 1; j < days; j++) {
       array.push({
+        year:year,
         mounth: i,
         day: j,
         dayOfTheWeek: dayOfTheWeek[new Date(2023, i, j).getDay()],

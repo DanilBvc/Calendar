@@ -19,14 +19,15 @@ export const CreatePopupComponent = ({handlePopup} : createPopup) => {
   const handleSubmit = () => {
     const day = +date.split("-")[2]
     const mounth = +date.split("-")[1] - 1
-    dispatch(setNewEventAction({mounth, day, event: title}))
+    const year = +date.split("-")[0]
+    dispatch(setNewEventAction({mounth, day, event: title, year}))
     handlePopup("add")
   }
   return (
     <div className="popup__wrapper">
       <div className="popup__title">
         <div className="popup__title-text">Add new idea item</div>
-        <div className="popup__title-close-btn" onClick={() => {handlePopup("add")}}>x</div>
+        <i className="popup__title-close-btn" onClick={() => {handlePopup("add")}}></i>
       </div>
       <div className="popup__input">
         Title*
@@ -35,7 +36,7 @@ export const CreatePopupComponent = ({handlePopup} : createPopup) => {
       <div className="popup__input-date">
         <div className="popup__input-date-left">
           Date format:
-          yyyy/mm/dd
+          yyyy-mm-dd
           <input value={date} type="text" onChange={(e) => {handleDate(e.target.value)}} />
         </div>
       </div>

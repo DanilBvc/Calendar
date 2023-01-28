@@ -8,6 +8,8 @@ function Popup({openAddPopup, handlePopup, changePopupData, openChangePopup, han
     <div>
      {openAddPopup ?  <CreatePopupComponent handlePopup={handlePopup} /> : null}
      {openChangePopup ? <ChangePopup changePopupData={changePopupData} handleChangePopup={handleChangePopup} />: null}
+     {openAddPopup ? <div className='background' onClick={() => {handlePopup("add")}}></div> : null}
+     {openChangePopup ? <div className='background' onClick={() => {handleChangePopup("change", null)}}></div> : null}
     </div>
   )
 }

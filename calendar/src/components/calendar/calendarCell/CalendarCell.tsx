@@ -1,6 +1,6 @@
 import React from 'react'
 import { ICalendarCell } from '../../../types/types'
-
+import './calendarCell.css'
 function CalendarCell({mounth,day, dayOfTheWeek, events, handleChangePopup}: ICalendarCell) {
   const handleEvent = (event: string) => {
     handleChangePopup("change", {day, mounth: mounth + 1, events: event})

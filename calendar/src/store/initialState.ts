@@ -4,4 +4,5 @@ export const initialState: Mounth[][] = generateState()
 export const initialInputsState: InitialInputState = {
     sliderMounth: 0,
     datePicker: formatDate(new Date()),
+    year: 2023
 }

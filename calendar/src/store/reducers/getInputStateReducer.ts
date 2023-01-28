@@ -16,7 +16,8 @@ export const getInputStateReducer = (state: InitialInputState = initialInputsSta
                 if(state.sliderMounth === 11) {
                     return {
                         ...state,
-                        sliderMounth: 0
+                        sliderMounth: 0,
+                        year: state.year + 1
                       }
                 }else {
                   return {
@@ -29,7 +30,8 @@ export const getInputStateReducer = (state: InitialInputState = initialInputsSta
                 if(state.sliderMounth === 0) {
                     return {
                         ...state,
-                        sliderMounth: 11
+                        sliderMounth: 11,
+                        year: state.year - 1
                       }
               }else {
                 return {

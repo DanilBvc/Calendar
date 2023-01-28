@@ -1,10 +1,9 @@
 import React from 'react'
 import HeaderSlider from './headerSlider/HeaderSlider'
 import HeaderDatePicker from './headerDatePicker/HeaderDatePicker'
-import { HeaderProps } from '../../../types/types'
 function headerNavigation() {
   return (
-    <div>
+    <div className='header-navigation__wrapper'>
         <HeaderSlider/>
         <HeaderDatePicker />
     </div>
