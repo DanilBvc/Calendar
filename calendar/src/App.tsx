@@ -28,7 +28,7 @@ function App() {
     if(getDataFromLocalStorage !== null) {
       const eventsArray = JSON.parse(getDataFromLocalStorage)
       eventsArray.forEach((e: {mounth:number,day:number,event:string,year:number}) => {
-        const mounth = e.mounth
+      const mounth = e.mounth
       const day = e.day
       const year = e.year
       const event = e.event
