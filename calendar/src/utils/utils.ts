@@ -13,7 +13,7 @@ export const generateState = (year: number = 2023): Mounth[][] => {
     const array = [];
     for (let j = 1; j < days; j++) {
       array.push({
-        year:year,
+        year: year,
         mounth: i,
         day: j,
         dayOfTheWeek: dayOfTheWeek[new Date(2023, i, j).getDay()],
@@ -45,18 +45,13 @@ export const formatDate = (date: Date) => {
 };
 export function dateIsValid(dateStr: string) {
   const regex = /^\d{4}-\d{2}-\d{2}$/;
-
   if (dateStr.match(regex) === null) {
     return false;
   }
-
   const date = new Date(dateStr);
-
   const timestamp = date.getTime();
-
   if (typeof timestamp !== 'number' || Number.isNaN(timestamp)) {
     return false;
   }
-
   return date.toISOString().startsWith(dateStr);
 }

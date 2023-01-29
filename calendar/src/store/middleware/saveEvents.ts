@@ -1,5 +1,4 @@
 import { Dispatch, MiddlewareAPI } from 'redux';
-import { Mounth } from './../../types/types';
 export const saveEvents = (store: MiddlewareAPI) => (next: Dispatch) => (action: {type: string, payload: {mounth: number, year: number, event: string, day: number, fromLoacalStorage: boolean, needToBeChanged: string}}) => {
     const getDataFromLocalStorage = localStorage.getItem("events")
     if(!action.payload.fromLoacalStorage) {
@@ -17,7 +16,7 @@ export const saveEvents = (store: MiddlewareAPI) => (next: Dispatch) => (action:
         }
         if(action.type === "DELETE_EVENT") {
             if(getDataFromLocalStorage !== null) {
-                const arr = JSON.parse(getDataFromLocalStorage)
+               const arr = JSON.parse(getDataFromLocalStorage)
                const resultArray = arr.filter((event: {mounth: number, year: number, event: string, day: number}) => {
                     if(event.mounth + 1 === action.payload.mounth && event.day === action.payload.day && event.year === action.payload.year && event.event === action.payload.event) {
                         return false
